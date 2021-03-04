@@ -1,0 +1,66 @@
+* {
+    background: rgb(44, 33, 33);
+    position: relative;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+header {
+    background: rgb(62, 33, 33);
+    text-align: center;
+    color: aliceblue;
+    font-size: 35px;
+}
+
+nav {
+    background: rgb(62, 33, 33);
+    text-align: center;
+    margin: 10px 0;
+}
+nav > a {
+    background: inherit;
+}
+
+.div {
+    display: inline-block;
+    height: 100%;
+}
+
+article {
+    margin: 10px 0;
+    /* border: 2px solid aliceblue; */
+    padding: 5px;
+    width: 20%;
+    height: 100%;
+}
+article > p {
+    background: inherit;
+    color:aliceblue;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px outset aliceblue;
+}
+#database_table {
+    color: aliceblue;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+.database > td:hover {
+    background: rgb(62, 33, 33);
+    cursor: pointer;
+}
+
+aside {
+    margin: 0px 10px;
+    /* border: 2px solid aliceblue; */
+    padding: 5px;
+    width: 75%;
+}
+
+aside > h1 {
+    background: inherit;
+    color: aliceblue;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
