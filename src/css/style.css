@@ -64,3 +64,14 @@ aside > h1 {
     font-weight: bold;
     text-align: center;
 }
+
+.query {
+    background: inherit;
+    width: 75%;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#dbquery {
+    background: aliceblue;
+    width: inherit;
+}
