@@ -49,6 +49,10 @@ article > p {
     background: rgb(62, 33, 33);
     cursor: pointer;
 }
+.label:hover {
+    background: rgb(62, 33, 33);
+    cursor: pointer;
+}
 
 aside {
     margin: 0px 10px;

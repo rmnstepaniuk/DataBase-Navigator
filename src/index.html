@@ -4,6 +4,12 @@
         <meta charset="utf-8">
         <title>Database Navigator</title>
         <link rel="stylesheet" href="./css/style.css">
+        <script src="../index.js"></script>
+        <script type="text/javascript">
+        function radioButton() {
+            console.log("Radio button pressed...");
+        }
+        </script>
     </head>
 
     <body>
@@ -21,19 +27,34 @@
                     <th>Databases</th>
                 </tr>
                 <tr class='database'>
-                    <td><input type="radio" name="db">Database #1</input></td>
+                    <td>
+                        <input type="radio" name="db" id="db1" checked onclick="radioButton()"></input>
+                        <label for="db1" class="label">Database #1</label>
+                    </td>
                 </tr>
                 <tr class='database'>
-                    <td><input type="radio" name="db">Database #2</input></td>
+                    <td>
+                        <input type="radio" name="db" id="db2" onclick="radioButton()"></input>
+                        <label for="db2" class="label">Database #2</label>
+                    </td>
                 </tr>
                 <tr class='database'>
-                    <td><input type="radio" name="db">Database #3</input></td>
+                    <td>
+                        <input type="radio" name="db" id="db3" onclick="radioButton()"></input>
+                        <label for="db3" class="label">Database #3</label>
+                    </td>
                 </tr>
                 <tr class='database'>
-                    <td><input type="radio" name="db">Database #4</input></td>
+                    <td>
+                        <input type="radio" name="db" id="db4" onclick="radioButton()"></input>
+                        <label for="db4" class="label">Database #4</label>
+                    </td>
                 </tr>
                 <tr class='database'>
-                    <td><input type="radio" name="db">Database #5</input></td>
+                    <td>
+                        <input type="radio" name="db" id="db5" onclick="radioButton()"></input>
+                        <label for="db5" class="label">Database #5</label>
+                    </td>
                 </tr>
             </table>
         </article>
@@ -45,7 +66,5 @@
             <h1>This div contains database</h1>
         </aside>
 
-        <script src="../index.js"></script>
-        
     </body>
 </html>
