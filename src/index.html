@@ -4,21 +4,19 @@
         <meta charset="utf-8">
         <title>Database Navigator</title>
         <link rel="stylesheet" href="./css/style.css">
-        <script src="../index.js"></script>
-        <script type="text/javascript">
-        function radioButton() {
-            console.log("Radio button pressed...");
-        }
-        </script>
+        <script src=".././index.js"></script>
+        <!-- <script type="text/javascript">
+        
+        </script>  -->
     </head>
 
     <body>
         <header>Database Navigator</header>
         
-        <nav>
+        <!-- <nav>
             <a href='http://t.me/rmnstepaniuk' target='_blank'>Telegram</a>
             <a href='http://instagram.com/rmnstepaniuk' target='_blank'>Instagram</a>
-        </nav>
+        </nav> -->
 
         <article class="div">
             <p>Navigation Menu</p>
@@ -28,31 +26,31 @@
                 </tr>
                 <tr class='database'>
                     <td>
-                        <input type="radio" name="db" id="db1" checked onclick="radioButton()"></input>
+                        <input type="radio" name="db" id="db1" checked" />
                         <label for="db1" class="label">Database #1</label>
                     </td>
                 </tr>
                 <tr class='database'>
                     <td>
-                        <input type="radio" name="db" id="db2" onclick="radioButton()"></input>
+                        <input type="radio" name="db" id="db2"" />
                         <label for="db2" class="label">Database #2</label>
                     </td>
                 </tr>
                 <tr class='database'>
                     <td>
-                        <input type="radio" name="db" id="db3" onclick="radioButton()"></input>
+                        <input type="radio" name="db" id="db3"" />
                         <label for="db3" class="label">Database #3</label>
                     </td>
                 </tr>
                 <tr class='database'>
                     <td>
-                        <input type="radio" name="db" id="db4" onclick="radioButton()"></input>
+                        <input type="radio" name="db" id="db4"" />
                         <label for="db4" class="label">Database #4</label>
                     </td>
                 </tr>
                 <tr class='database'>
                     <td>
-                        <input type="radio" name="db" id="db5" onclick="radioButton()"></input>
+                        <input type="radio" name="db" id="db5"" />
                         <label for="db5" class="label">Database #5</label>
                     </td>
                 </tr>
@@ -61,9 +59,10 @@
 
         <aside class="div">
             <div class="query">
-                <input type="text" id="dbquery" name="dbquery"></input>
+                <input type="text" id="dbquery" name="dbquery" placeholder="Enter SQL query here!" />
+                <input type="submit" onclick="queryRequest(event)" />
             </div>
-            <h1>This div contains database</h1>
+
         </aside>
 
     </body>

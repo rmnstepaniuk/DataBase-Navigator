@@ -20,14 +20,20 @@ var database = mysql.createConnection({
 });
 
 database.connect(function(error) {
-    if (error) console.log('Error');
+    if (error) console.log(error);
     console.log('Connected');
 });
 
+function queryRequest(event) {
+    event.preventDefault();
+    let entry = document.getElementById("dbquery");
+    console.log(entry.value);
+};
+
 app.get('/db', function(req, res) {
-    let sql = 'SELECT access.role, user.name FROM access, user WHERE access.user_id = user.id;';
+    let sql = 'SELECT user.name, access.role FROM access, user WHERE access.user_id = user.id;';
     database.query(sql, function(error, result) {
-        if (error) console.log('Error');
+        if (error) console.log(error);
         console.log(result);
         res.send(result);
     });

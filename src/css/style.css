@@ -23,6 +23,7 @@ nav > a {
 .div {
     display: inline-block;
     height: 100%;
+    border: 1px outset aliceblue;
 }
 
 article {
