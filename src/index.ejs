@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>    
+    
+    <%- include("./head") %>
+
+    <body>
+        <header>Database Navigator</header>
+
+        <article class="div">
+            <p>Navigation Menu</p>
+            <table id="database_table">
+                <tr>
+                    <th>Databases</th>
+                </tr>
+                <% if (databases.length > 0) { %>
+                    <% databases.forEach(database => { %>
+                        <tr class="database">
+                            <td class="button">
+                                <input type="radio" name="db" id="db1" checked" />
+                                <label for="db1" class="button"><%= database.database %></label>
+                            </td>
+                        </tr>
+                    <% }); %>
+                <% } else { %>
+                    <p>NO DATABASES</p>
+                <% } %>
+            </table>
+        </article>
+
+        <aside class="div">
+            <div class="query">
+                <input class="query text" type="text" id="dbquery" name="dbquery" placeholder="Enter SQL query here!" />
+                <input class="query submit" type="submit" for="dbquery" onclick="window.location.href='?sql=' + document.querySelector('#dbquery').value" />
+            </div>
+            <div>
+                <% if (result.length > 0) { %>
+                    <table class="table">
+                        <tr class="table">
+                            <% result[0].forEach(header => { %>
+                                <th class="table cell">
+                                    <%= header.name %>
+                                </th>
+                            <% }) %>
+                        </tr>
+                        <% result.forEach(row => {  %>
+                            <tr class="table">
+                                <% row.forEach(v => { %>
+                                    <td class="table cell">
+                                        <%= v.value %>
+                                    </td>
+                                <% }) %>
+                            </tr>
+                        <% }) %>
+                <% } else { %>
+                    <table>
+                        <tr>
+                            <th class="error_message">Your query is empty</th>
+                        </tr>
+                    </table>
+                <% } %>
+
+                </table>
+
+            </div>
+        </aside>
+
+    </body>
+</html>
