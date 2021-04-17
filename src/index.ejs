@@ -29,7 +29,16 @@
 
         <aside class="div">
             <div class="query">
-                <input class="query text" type="text" id="dbquery" name="dbquery" placeholder="Enter SQL query here!" />
+                <script type="text/javascript">
+                    // подання запиту SQL натисканням на 'Enter'
+                    function onKeyPressEnter(event) {
+                        if (event.keyCode === 13) {
+                            event.preventDefault();
+                            window.location.href = '?sql=' + document.querySelector('#dbquery').value
+                        }
+                    }
+                </script>
+                <input class="query text" type="text" id="dbquery" name="dbquery" placeholder="Enter SQL query here!" onkeydown="onKeyPressEnter(event)" />
                 <input class="query submit" type="submit" for="dbquery" onclick="window.location.href='?sql=' + document.querySelector('#dbquery').value" />
             </div>
             <div>
@@ -51,10 +60,11 @@
                                 <% }) %>
                             </tr>
                         <% }) %>
+                    </table>
                 <% } else { %>
                     <table>
                         <tr>
-                            <th class="error_message">Your query is empty</th>
+                            <th class="error_message"><%= error %></th>
                         </tr>
                     </table>
                 <% } %>

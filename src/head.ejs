@@ -49,23 +49,31 @@
             cursor: pointer;
         }
         .query {
-            display: inline-block;
+            display: flex;
             background: inherit;
             width: inherit;
         }
         .text {
             background: aliceblue;
-            width: 70%;
+            width: 100%;
         }
         .submit {
             background: aliceblue;
             width: 15%;
+        }
+        .submit:hover {
+            cursor: pointer;
+        }
+        .table {
+            table-layout: fixed;
+            width: 100%;
         }
         .cell {
             background: aliceblue;
             width: fit-content;
             height: auto;
             font-size: 20px;
+            word-wrap: break-word;
         }
         .error_message {
             background: inherit;

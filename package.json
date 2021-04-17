@@ -1,6 +1,6 @@
 {
   "name": "database-navigator",
-  "version": "1.0.0",
+  "version": "0.5.0",
   "description": "*Коротка загальна характеристика проекту.*",
   "main": "index.js",
   "directories": {
