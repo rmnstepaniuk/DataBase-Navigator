@@ -11,17 +11,20 @@ app.set('view engine', 'ejs');
 app.set('views', 'src');
 
 // додавання нової бази даних до масиву (in dev)
-// function addDatabase(host, user, password, database) {
-//     var sqlDatabase = mysql.createConnection({
+// function addDatabase(host, user, password, name) {
+//     var database = {
 //         host: host,
 //         user: user,
 //         password: password,
-//         database: database
-//     });
+//         database: name
+//     }
+//     var sqlDatabase = mysql.createConnection(database);
 //     sqlDatabase.connect((error) => {
 //         if (error) console.log(error);
-//         console.log('Connected');
-//         databases.push(database)
+//         else {
+//             console.log('Connected');
+//             databases.push(database)
+//         }
 //     });
 //     app.get('/', (req, res) => {
 //         res.render('index', {databases})
@@ -47,10 +50,12 @@ var database = {
 var sqlDatabase = mysql.createConnection(database);
 sqlDatabase.connect((error) => {
     if (error) console.log(error);
-    console.log('Connected');
-    // у разі успішного з'єднання 
-    // база даних додається у масив
-    databases.push(database)
+    else {
+        console.log('Connected');
+        // у разі успішного з'єднання 
+        // база даних додається у масив
+        databases.push(database)
+    }
 });
 
 // візуалізація веб-сторінки

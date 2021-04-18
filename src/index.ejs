@@ -16,13 +16,13 @@
                     <% databases.forEach(database => { %>
                         <tr class="database">
                             <td class="button">
-                                <input type="radio" name="db" id="db1" checked" />
-                                <label for="db1" class="button"><%= database.database %></label>
+                                <input type="radio" name="radiobutton" id="db" />
+                                <label for="radiobutton" class="button""><%= database.database %></label>
                             </td>
                         </tr>
                     <% }); %>
                 <% } else { %>
-                    <p>NO DATABASES</p>
+                    <tr><td>NO DATABASES</td></tr>
                 <% } %>
             </table>
         </article>
@@ -73,6 +73,10 @@
 
             </div>
         </aside>
+
+        <footer>
+            <p>Author © Roman Stepaniuk 2021 <a href="http://t.me/rmnstepaniuk" target="_blank">Telegram</a></p>
+        </footer>
 
     </body>
 </html>
