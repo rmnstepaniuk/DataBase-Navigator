@@ -1,0 +1,5 @@
+@startuml
+actor :Користувач: as user
+usecase UC_1 as "<b>UC_1</b>\nЗапит SQL"
+user -d--> UC_1
+@enduml
