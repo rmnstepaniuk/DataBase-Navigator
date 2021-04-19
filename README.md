@@ -1,16 +1,20 @@
 ## Курсовий проект з дисципліни "Інженерія ПЗ"
 ## Тема проекту: "Онлайн-навігатор бази даних MySQL"
 
-*Коротка загальна характеристика проекту.*
+*Онлайн застосунок для перегляду та навігації базами даних*
 
-### Учасники:
+### Документація:
+- [Аналіз предметної області](url)
+- [Запит зацікавлених осіб](url)
+- [Модель прецедентів](https://github.com/rmnstepaniuk/database-navigator/blob/master/doc/use%20cases/readme.md)
 
-Степанюк Роман
+### Автор:
+
+Степанюк Роман ІВ-91
 
 ### Контактні дані:
  - Електронна пошта: rmnstepaniuk@gmail.com
- - [Телеграм](http://t.me/rmnstepaniuk)
- - [GitHub](https://github.com/rmnstepaniuk)
+ - Телеграм: [rmnstepaniuk](http://t.me/rmnstepaniuk)
 
 
 [Методичні вказівки](https://jace-dev.herokuapp.com/design/js-talks#/)
