@@ -22,4 +22,4 @@
 
 ***ОСНОВНИЙ СЦЕНАРІЙ:***
 
-![UC_1](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rmnstepaniuk/database-navigator/master/src/uml/sequence_diagram)
+![UC_1](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rmnstepaniuk/database-navigator/master/src/uml/sequence_UC_1)
