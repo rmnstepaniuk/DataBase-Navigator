@@ -1,5 +1,7 @@
 # Модель прецедентів
 
+![UC_1](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rmnstepaniuk/database-navigator/master/src/uml/UC_1)
+
 #### Сценарій №1
 
 ***ID:*** UC_1
@@ -20,4 +22,4 @@
 
 ***ОСНОВНИЙ СЦЕНАРІЙ:***
 
-![UC_1](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rmnstepaniuk/database-navigator/master/src/uml/UC_1)
+![UC_1](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/rmnstepaniuk/database-navigator/master/src/uml/activity)
