@@ -49,10 +49,10 @@ var databases = []
  * @type {{host: string, user: string, password: string, database: string}}
  */
 var db = {
-    host: 'd3y0lbg7abxmbuoi.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
-    user: 'm2725ei61timi8ut',
-    password: 'vcae6egn6tnmmaio',
-    database: 'b2v6pffi6qrk4ubk'
+    host: '',
+    user: '',
+    password: '',
+    database: ''
 }
 /**
  * створення з'єднання з базою даних
