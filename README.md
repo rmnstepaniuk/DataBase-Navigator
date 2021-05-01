@@ -16,7 +16,7 @@ git clone https://github.com/rmnstepaniuk/database-navigator.git
 
 Після встановлення проекту можна почати роботу з застосунком:
 
- 4. Для роботи необхідно створити з'єднання з базою даних. Для цього у файлі index.js [(line 80)](https://github.com/rmnstepaniuk/database-navigator/blob/master/index.js#L80) потрібно ввести інформацію про базу даних:  
+ 4. Для роботи необхідно створити з'єднання з базою даних. Для цього у файлі index.js  [(line 80)](https://github.com/rmnstepaniuk/database-navigator/blob/master/index.js#L80) потрібно ввести інформацію про базу даних:  
 ***хост, користувач, пароль та назва бази***
 ```javascript
 var db = {
@@ -37,6 +37,8 @@ var db = {
  7. Введіть ваш запит і насолоджуйтесь результатом :)
 
 ![mainPage_queryResult](https://user-images.githubusercontent.com/42769810/116797283-c8a21000-aaec-11eb-885e-a0401bf8a9b5.png)
+
+#### Переглянути jsdoc документацію коду можна за допомогою команди ```npm run doc```
 
 ### Документація знаходиться [тут](https://github.com/rmnstepaniuk/database-navigator/blob/master/doc/readme.md)
 
