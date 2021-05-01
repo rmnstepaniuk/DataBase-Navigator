@@ -32,11 +32,11 @@ var db = {
 
  6. Перейшовши на вказаний сервер, перед вами з'явиться сторінка
 
-![mainPage_empty](https://user-images.githubusercontent.com/42769810/116797151-42d19500-aaeb-11eb-828c-1df734c637fd.png)
+![mainPage_empty](https://user-images.githubusercontent.com/42769810/116797263-90023680-aaec-11eb-8d5a-17c4ee9cabea.png)
 
  7. Введіть ваш запит і насолоджуйтесь результатом :)
 
-![mainPage_queryResult](https://user-images.githubusercontent.com/42769810/116797158-51b84780-aaeb-11eb-914e-9442b9766523.png)
+![mainPage_queryResult](https://user-images.githubusercontent.com/42769810/116797268-942e5400-aaec-11eb-83da-19b626569a88.png)
 
 ### Документація знаходиться [тут](https://github.com/rmnstepaniuk/database-navigator/blob/master/doc/readme.md)
 
