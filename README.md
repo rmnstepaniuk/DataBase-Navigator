@@ -36,7 +36,7 @@ var db = {
 
  7. Введіть ваш запит і насолоджуйтесь результатом :)
 
-![mainPage_queryResult](https://user-images.githubusercontent.com/42769810/116797268-942e5400-aaec-11eb-83da-19b626569a88.png)
+![mainPage_queryResult](https://user-images.githubusercontent.com/42769810/116797283-c8a21000-aaec-11eb-885e-a0401bf8a9b5.png)
 
 ### Документація знаходиться [тут](https://github.com/rmnstepaniuk/database-navigator/blob/master/doc/readme.md)
 
