@@ -27,6 +27,9 @@ var db = {
 }
 ```
  5. Запустити сервер за допомогою команди ```npm run start```
+
+![serverOperationalMessage](https://user-images.githubusercontent.com/42769810/116797239-37329e00-aaec-11eb-8496-4737cab52c0d.png)
+
  6. Перейшовши на вказаний сервер, перед вами з'явиться сторінка
 
 ![mainPage_empty](https://user-images.githubusercontent.com/42769810/116797151-42d19500-aaeb-11eb-828c-1df734c637fd.png)
