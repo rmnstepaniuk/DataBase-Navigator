@@ -1,0 +1,15 @@
+{
+    "source": {
+        "include": ["./index.js"],
+        "includePattern": ".js$",
+        "excludePattern": "(node_modules/ | doc/api)"
+    },
+    "opts": {
+        "recurse": true,
+        "destination": "./doc/api/"
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false
+    }
+}

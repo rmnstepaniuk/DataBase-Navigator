@@ -13,11 +13,11 @@
                     <th>Databases</th>
                 </tr>
                 <% if (databases.length > 0) { %>
-                    <% databases.forEach(database => { %>
+                    <% databases.forEach(db => { %>
                         <tr class="database">
                             <td class="button">
-                                <input type="radio" name="radiobutton" id="db" />
-                                <label for="radiobutton" class="button""><%= database.database %></label>
+                                <input type="radio" name="radiobutton" id="db_button" value="<%= db.database %>" />
+                                <label for="db_button" class="button" ><%= db.database %></label>
                             </td>
                         </tr>
                     <% }); %>
