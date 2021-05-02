@@ -3,7 +3,7 @@
 
 *Онлайн застосунок для перегляду та навігації базами даних*
 
-### Використання застосунку
+## Використання застосунку
 
 Для початку необхідно:
 
@@ -39,13 +39,18 @@ var db = {
 
 ![mainPage_queryResult](https://user-images.githubusercontent.com/42769810/116797283-c8a21000-aaec-11eb-885e-a0401bf8a9b5.png)
 
-#### Переглянути jsdoc документацію коду можна за допомогою команди ```npm run doc```
+### Переглянути jsdoc документацію коду можна за допомогою команди ```npm run doc```
 
-### Документація знаходиться [тут](https://github.com/rmnstepaniuk/database-navigator/blob/master/doc/readme.md)
+## Пояснювальна записка знаходиться [тут](https://github.com/rmnstepaniuk/database-navigator/blob/master/doc/coursework_report.md)
 
-### Курсовий проект виконав:
+## Курсовий проект виконав:
  - студент ФІОТ групи ІВ-91 Степанюк Роман ІВ-91
 
-### Контактні дані:
+## Контактні дані:
  - Електронна пошта: rmnstepaniuk@gmail.com
  - Телеграм: [rmnstepaniuk](http://t.me/rmnstepaniuk)
+
+## Інше
+[Методичні вказівки](https://jace-dev.herokuapp.com/design/js-talks#/)
+
+[Звітність](https://drive.google.com/file/d/1A5Pxqb0Esy78t9xhMlkWzzx4chdkXAl2/view?usp=sharing)
