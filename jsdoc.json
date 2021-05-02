@@ -1,6 +1,6 @@
 {
     "source": {
-        "include": ["./index.js"],
+        "include": ["./index.js", "./src/js"],
         "includePattern": ".js$",
         "excludePattern": "(node_modules/ | doc/api)"
     },

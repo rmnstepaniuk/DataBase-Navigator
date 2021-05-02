@@ -1,9 +1,4 @@
-/**
- * @author Roman Stepaniuk <rmnstepaniuk@gmail.com>
- */
-
 const express = require('express');
-const config = require('./config');
 const mysql = require('mysql2');
 /**
  * ініціалізація додатку
@@ -11,7 +6,6 @@ const mysql = require('mysql2');
  * @type {Express}
  */
 const app = express();
-
 /**
  * конфігурація налаштувань npm-ejs
  * @method set
@@ -25,18 +19,7 @@ app.set('view engine', 'ejs');
 /**
  * зміна стандартної папки npm-ejs
  */
-app.set('views', 'src/ejs');
-
-/**
- * прив'язка та прослуховування з'єднань
- * @method listen
- * @param {string | number} PORT - вказаний хост та порт
- * @param {Function} callback - повертає повідомлення про запуск сервера
- */
-app.listen(config.PORT, () => {
-    console.log(`Server is running on PORT ${config.PORT}...`);
-});
-
+app.set('views', 'src');
 /**
  * масив з базами даних
  * @var databases
@@ -72,7 +55,7 @@ sqlDatabase.connect((error) => {
     else {
         console.log('Connected');
         databases.push(db)
-    }
+}
 });
 /**
  * візуалізація веб-сторінки
@@ -88,6 +71,7 @@ app.get('/', (req, res) => {
      * @var sql
      */
     let sql = req.query.sql;
+    // var sqlDatabase = databaseConnection(db);
     try {
         /**
          * обробка SQL запиту
@@ -130,4 +114,7 @@ app.get('/', (req, res) => {
     } catch {
         res.render('index', {databases, result : {}, error : ''})
     }
+
 });
+
+module.exports = app;

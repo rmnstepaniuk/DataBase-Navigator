@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: src/js/databaseConnection.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,42 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: src/js/databaseConnection.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>function databaseConnection(database, array) {
+    /**
+     * створення з'єднання з базою даних
+     * @var sqlDatabase
+     * @type {mysql.Connection} 
+     * @method createConnection
+     * @param {Object} database - база даних
+     */
+    var sqlDatabase = mysql.createConnection(database);
+    /**
+     * @method connect
+     * @param {Function} callback - у разі успішного з'єднання база даних додається у масив
+     * @param {mysql.QueryError} callback.error - якщо виникне помилка, вона виведеться у консоль
+     */
+    sqlDatabase.connect((error) => {
+        if (error) console.log(error);
+        else {
+            console.log('Connected');
+            array.push(database)
+        }
+    });
+    return sqlDatabase;
+}
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = databaseConnection;</code></pre>
+        </article>
+    </section>
 
 
 
