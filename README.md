@@ -27,7 +27,7 @@ var db = {
     database: ''
 }
 ```
- 5. Запустити сервер за допомогою команди ```npm run start```
+ 5. Запустити сервер за допомогою команди ```npm start```
 
 ![serverOperationalMessage](https://user-images.githubusercontent.com/42769810/116797239-37329e00-aaec-11eb-8496-4737cab52c0d.png)
 
@@ -39,7 +39,7 @@ var db = {
 
 ![mainPage_queryResult](https://user-images.githubusercontent.com/42769810/116797283-c8a21000-aaec-11eb-885e-a0401bf8a9b5.png)
 
-### Переглянути jsdoc документацію коду можна за допомогою команди ```npm run doc```
+### Переглянути jsdoc документацію коду можна за допомогою команди ```npm doc```
 
 ## Пояснювальна записка знаходиться [тут](https://github.com/rmnstepaniuk/database-navigator/blob/master/doc/coursework_report.md)
 
