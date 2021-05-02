@@ -17,7 +17,7 @@ git clone https://github.com/rmnstepaniuk/database-navigator.git
 Після встановлення проекту можна почати роботу з застосунком:
 
  4. Для роботи необхідно створити з'єднання з базою даних.  
- Для цього у файлі index.js [(line 51)](https://github.com/rmnstepaniuk/database-navigator/blob/master/index.js#L51) потрібно ввести інформацію про базу даних:  
+ Для цього у файлі index.js [(line 40](https://github.com/rmnstepaniuk/database-navigator/blob/master/index.js#L40)отрібно ввести інформацію про базу даних:  
 ***хост, користувач, пароль та назва бази***
 ```javascript
 var db = {
