@@ -39,7 +39,7 @@ var db = {
 
 ![mainPage_queryResult](https://user-images.githubusercontent.com/42769810/116797283-c8a21000-aaec-11eb-885e-a0401bf8a9b5.png)
 
-### Переглянути jsdoc документацію коду можна за допомогою команди ```npm doc```
+### Переглянути jsdoc документацію коду можна за допомогою команди ```npm run doc```
 
 ## Пояснювальна записка знаходиться [тут](https://github.com/rmnstepaniuk/database-navigator/blob/master/doc/coursework_report.md)
 
