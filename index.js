@@ -1,25 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
-/**
- * ініціалізація додатку
- * @constant app
- * @type {Express}
- */
-const app = express();
-/**
- * конфігурація налаштувань npm-ejs
- * @method set
- * @param {string} param1 - перший параметр: яке налаштування ми хочемо змінити
- * @param {string} param2 - другий параметр: нове значення цього налаштування
- */
-/**
- * підключення npm-ejs
- */
-app.set('view engine', 'ejs');
-/**
- * зміна стандартної папки npm-ejs
- */
-app.set('views', 'src');
+
+const app = initApp();
 /**
  * масив з базами даних
  * @var databases
@@ -31,47 +13,27 @@ var databases = []
  * @var database
  * @type {{host: string, user: string, password: string, database: string}}
  */
-var db = {
-    host: '',
-    user: '',
-    password: '',
-    database: ''
+ var db = {
+    host: 'd3y0lbg7abxmbuoi.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
+    user: 'm2725ei61timi8ut',
+    password: 'vcae6egn6tnmmaio',
+    database: 'b2v6pffi6qrk4ubk'
 }
-/**
- * створення з'єднання з базою даних
- * @var sqlDatabase
- * @type {mysql.Connection} 
- * @method createConnection
- * @param {Object} database - база даних
- */
-var sqlDatabase = mysql.createConnection(db);
-/**
- * @method connect
- * @param {Function} callback - у разі успішного з'єднання база даних додається у масив
- * @param {mysql.QueryError} callback.error - якщо виникне помилка, вона виведеться у консоль
- */
-sqlDatabase.connect((error) => {
-    if (error) console.log(error);
-    else {
-        console.log('Connected');
-        databases.push(db)
-}
-});
+var Connection = connectDatabase(db);
 /**
  * візуалізація веб-сторінки
  * @method get
- * @param {string} route - шлях
+ * @param {string} route
  * @param {Function} callback
- * @param {any} callback.request - об'єкт, який містить інформацію про запит HTTP, що викликав подію
- * @param {any} callback.response - відправляє бажану відповідь HTTP
+ * @param {any} callback.request
+ * @param {any} callback.response
  */
 app.get('/', (req, res) => {
     /**
      * запит отриманий від користувача
-     * @var sql
+     * @var sqlQuery
      */
-    let sql = req.query.sql;
-    // var sqlDatabase = databaseConnection(db);
+    let sqlQuery = req.query.sql;
     try {
         /**
          * обробка SQL запиту
@@ -82,39 +44,98 @@ app.get('/', (req, res) => {
          * @param {mysql.RowDataPacket} callback.result - містить рядки, повернені сервером
          * @param {mysql.FieldPacket} callback.fields - містить додаткові метадані про результати, якщо такі є
          */
-        sqlDatabase.query(sql, (error, result, fields) => {
+        Connection.query(sqlQuery, (error, result, fields) => {
             // перерівка на помилки (синтаксис SQL, наявність запитаних полів у базі даних і тд)
             try {
+                errorMessage = ''
                 /**
                  * створення масиву з результатами обробки запиту
-                 * @var result - масив з результатами, які будуть відправлятись на веб-сторінку
+                 * @var queryResult - масив з результатами, які будуть відправлятись на веб-сторінку
                  * @type {Array.<{Object}>}
                  */
-                result = result.map(row => 
+                queryResult = result.map(row => 
                     fields.map(f => ({
                         name : f.name,
                         value : row[f.name]
                     }))
                 );
-                /**
-                 * посилання результатів на веб-сторінку для відображення
-                 * @method render
-                 * @param {string} file - файл для рендерингу
-                 * @param {Object} data - дані, які будуть додаватись до сторінки
-                 */
-                res.render('index', {databases, result, error : ''});
-            } catch {
-                message = error.message.split("; ");
-                // посилання повідомлення про помилку на веб-сторінку
-                res.render('index', {databases, result : {}, error : message[0]})
-            }
+                // console.log(queryResult);
+                // return [queryResult, errorMessage]
 
+                res.render('index', {databases, result : queryResult, error : errorMessage});
+            } catch {
+                errorMessage = error.message.split("; ")[0];
+                queryResult = {};
+
+                // посилання повідомлення про помилку на веб-сторінку
+                res.render('index', {databases, result : queryResult, error : errorMessage})
+
+                // return [queryResult, errorMessage]
+            }
         });
+        /**
+         * посилання результатів на веб-сторінку для відображення
+         * @method render
+         * @param {string} file - файл для рендерингу
+         * @param {Object} data - дані, які будуть додаватись до сторінки
+         */
+        // res.render('index', {databases, result, error})
     // якщо запит порожній
     } catch {
         res.render('index', {databases, result : {}, error : ''})
     }
-
 });
 
 module.exports = app;
+
+/**
+ * ініціалізація додатку
+ * @returns
+ */
+function initApp() {
+    var app = express();
+    /**
+     * конфігурація налаштувань npm-ejs
+     * @method set
+     * @param {string} param1 - перший параметр: яке налаштування ми хочемо змінити
+     * @param {string} param2 - другий параметр: нове значення цього налаштування
+     */
+    /**
+     * підключення npm-ejs
+     */
+    app.set('view engine', 'ejs');
+    /**
+     * зміна стандартної папки npm-ejs
+     */
+    app.set('views', 'src');
+
+    return app;
+}
+/**
+ * створення з'єднання з базою даних
+ * @param {Object} database 
+ * @returns
+ */
+function connectDatabase(database) {
+    /**
+     * @var Connection
+     * @type {mysql.Connection} 
+     * @method createConnection
+     * @param {Object} database
+     */
+    var Connection = mysql.createConnection(database);
+    /**
+     * @method connect
+     * @param {Function} callback - у разі успішного з'єднання база даних додається у масив
+     * @param {mysql.QueryError} callback.error - якщо виникне помилка, вона виведеться у консоль
+     */
+    Connection.connect((error) => {
+        if (error) console.log(error);
+        else {
+            console.log('Connected');
+            databases.push(database);
+    }
+    });
+
+    return Connection;
+}
