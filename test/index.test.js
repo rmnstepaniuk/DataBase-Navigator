@@ -38,8 +38,8 @@ describe("GET /", () => {
         done();
     })
 
-    text("if there is unknown column in table message should appear", async done => {
-        const response = await request(app).get("/?sql=select%20abcd%from%20user");
+    test("if there is unknown column in table message should appear", async done => {
+        const response = await request(app).get("/?sql=select%20abcd%20from%20user");
         expect(response.text).toContain("Unknown column");
         done();
     })
