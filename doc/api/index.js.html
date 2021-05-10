@@ -28,27 +28,8 @@
         <article>
             <pre class="prettyprint source linenums"><code>const express = require('express');
 const mysql = require('mysql2');
-const databaseConnection = require('./src/js/databaseConnection')
-/**
- * ініціалізація додатку
- * @constant app
- * @type {Express}
- */
-const app = express();
-/**
- * конфігурація налаштувань npm-ejs
- * @method set
- * @param {string} param1 - перший параметр: яке налаштування ми хочемо змінити
- * @param {string} param2 - другий параметр: нове значення цього налаштування
- */
-/**
- * підключення npm-ejs
- */
-app.set('view engine', 'ejs');
-/**
- * зміна стандартної папки npm-ejs
- */
-app.set('views', 'src');
+
+const app = initApp();
 /**
  * масив з базами даних
  * @var databases
@@ -60,46 +41,27 @@ var databases = []
  * @var database
  * @type {{host: string, user: string, password: string, database: string}}
  */
-var db = {
+ var db = {
     host: 'd3y0lbg7abxmbuoi.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
     user: 'm2725ei61timi8ut',
     password: 'vcae6egn6tnmmaio',
     database: 'b2v6pffi6qrk4ubk'
 }
-/**
- * створення з'єднання з базою даних
- * @var sqlDatabase
- * @type {mysql.Connection} 
- * @method createConnection
- * @param {Object} database - база даних
- */
-var sqlDatabase = mysql.createConnection(db);
-/**
- * @method connect
- * @param {Function} callback - у разі успішного з'єднання база даних додається у масив
- * @param {mysql.QueryError} callback.error - якщо виникне помилка, вона виведеться у консоль
- */
-sqlDatabase.connect((error) => {
-    if (error) console.log(error);
-    else {
-        console.log('Connected');
-        databases.push(db)
-}
-});
+var Connection = connectDatabase(db);
 /**
  * візуалізація веб-сторінки
  * @method get
- * @param {string} route - шлях
+ * @param {string} route
  * @param {Function} callback
- * @param {any} callback.request - об'єкт, який містить інформацію про запит HTTP, що викликав подію
- * @param {any} callback.response - відправляє бажану відповідь HTTP
+ * @param {any} callback.request
+ * @param {any} callback.response
  */
 app.get('/', (req, res) => {
     /**
      * запит отриманий від користувача
-     * @var sql
+     * @var sqlQuery
      */
-    let sql = req.query.sql;
+    let sqlQuery = req.query.sql;
     try {
         /**
          * обробка SQL запиту
@@ -110,34 +72,42 @@ app.get('/', (req, res) => {
          * @param {mysql.RowDataPacket} callback.result - містить рядки, повернені сервером
          * @param {mysql.FieldPacket} callback.fields - містить додаткові метадані про результати, якщо такі є
          */
-        sqlDatabase.query(sql, (error, result, fields) => {
+        Connection.query(sqlQuery, (error, result, fields) => {
             // перерівка на помилки (синтаксис SQL, наявність запитаних полів у базі даних і тд)
             try {
+                errorMessage = ''
                 /**
                  * створення масиву з результатами обробки запиту
-                 * @var result - масив з результатами, які будуть відправлятись на веб-сторінку
+                 * @var queryResult - масив з результатами, які будуть відправлятись на веб-сторінку
                  * @type {Array.&lt;{Object}>}
                  */
-                result = result.map(row => 
+                queryResult = result.map(row => 
                     fields.map(f => ({
                         name : f.name,
                         value : row[f.name]
                     }))
                 );
-                /**
-                 * посилання результатів на веб-сторінку для відображення
-                 * @method render
-                 * @param {string} file - файл для рендерингу
-                 * @param {Object} data - дані, які будуть додаватись до сторінки
-                 */
-                res.render('index', {databases, result, error : ''});
-            } catch {
-                message = error.message.split("; ");
-                // посилання повідомлення про помилку на веб-сторінку
-                res.render('index', {databases, result : {}, error : message[0]})
-            }
+                // console.log(queryResult);
+                // return [queryResult, errorMessage]
 
+                res.render('index', {databases, result : queryResult, error : errorMessage});
+            } catch {
+                errorMessage = error.message.split("; ")[0];
+                queryResult = {};
+
+                // посилання повідомлення про помилку на веб-сторінку
+                res.render('index', {databases, result : queryResult, error : errorMessage})
+
+                // return [queryResult, errorMessage]
+            }
         });
+        /**
+         * посилання результатів на веб-сторінку для відображення
+         * @method render
+         * @param {string} file - файл для рендерингу
+         * @param {Object} data - дані, які будуть додаватись до сторінки
+         */
+        // res.render('index', {databases, result, error})
     // якщо запит порожній
     } catch {
         res.render('index', {databases, result : {}, error : ''})
@@ -145,6 +115,58 @@ app.get('/', (req, res) => {
 });
 
 module.exports = app;
+
+/**
+ * ініціалізація додатку
+ * @returns app
+ */
+function initApp() {
+    var app = express();
+    /**
+     * конфігурація налаштувань npm-ejs
+     * @method set
+     * @param {string} param1 - перший параметр: яке налаштування ми хочемо змінити
+     * @param {string} param2 - другий параметр: нове значення цього налаштування
+     */
+    /**
+     * підключення npm-ejs
+     */
+    app.set('view engine', 'ejs');
+    /**
+     * зміна стандартної папки npm-ejs
+     */
+    app.set('views', 'src');
+
+    return app;
+}
+/**
+ * створення з'єднання з базою даних
+ * @param {Object} database 
+ * @returns Connection
+ */
+function connectDatabase(database) {
+    /**
+     * @var Connection
+     * @type {mysql.Connection} 
+     * @method createConnection
+     * @param {Object} database
+     */
+    var Connection = mysql.createConnection(database);
+    /**
+     * @method connect
+     * @param {Function} callback - у разі успішного з'єднання база даних додається у масив
+     * @param {mysql.QueryError} callback.error - якщо виникне помилка, вона виведеться у консоль
+     */
+    Connection.connect((error) => {
+        if (error) console.log(error);
+        else {
+            console.log('Connected');
+            databases.push(database);
+    }
+    });
+
+    return Connection;
+}
 </code></pre>
         </article>
     </section>
@@ -155,13 +177,13 @@ module.exports = app;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#app">app</a></li><li><a href="global.html#connect">connect</a></li><li><a href="global.html#createConnection">createConnection</a></li><li><a href="global.html#database">database</a></li><li><a href="global.html#databases">databases</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#query">query</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#result">result</a></li><li><a href="global.html#set">set</a></li><li><a href="global.html#sql">sql</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#connect">connect</a></li><li><a href="global.html#connectDatabase">connectDatabase</a></li><li><a href="global.html#createConnection">createConnection</a></li><li><a href="global.html#database">database</a></li><li><a href="global.html#databases">databases</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#initApp">initApp</a></li><li><a href="global.html#query">query</a></li><li><a href="global.html#queryResult">queryResult</a></li><li><a href="global.html#set">set</a></li><li><a href="global.html#sqlQuery">sqlQuery</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun May 02 2021 17:58:10 GMT+0300 (за східноєвропейським літнім часом)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Mon May 10 2021 15:19:57 GMT+0300 (за східноєвропейським літнім часом)
 </footer>
 
 <script> prettyPrint(); </script>

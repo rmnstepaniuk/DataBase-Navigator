@@ -90,7 +90,7 @@ module.exports = app;
 
 /**
  * ініціалізація додатку
- * @returns
+ * @returns app
  */
 function initApp() {
     var app = express();
@@ -114,7 +114,7 @@ function initApp() {
 /**
  * створення з'єднання з базою даних
  * @param {Object} database 
- * @returns
+ * @returns Connection
  */
 function connectDatabase(database) {
     /**
