@@ -5,7 +5,7 @@
  3. [Технічне завдання](#технічне-завдання)
  4. [Проектування](#проектування)
  5. [Розробка](#розробка)
- 6. [Тестування](#тестування) to-do
+ 6. [Тестування](#тестування)
  7. [Висновки](#висновки)
 
 ## Вступ
@@ -127,7 +127,89 @@ MySQL Workbench пропонується в двох редакціях:
 
 ## Тестування 
 
-to-do
+### Тест №1
+
+Тестування коду стану HTTP. Очікується успішне виконання HTTP запиту (200 OK)
+```javascript
+test("status code should be 200", async done => {
+    const response = await request(app).get("/");
+    expect(response.statusCode).toBe(200);
+    done();
+})
+```
+### Тест №2
+
+Тестування відповіді серверу на запит. Очікується, що відповідь буде визначеною.
+```javascript
+test("response body should be defined", async done => {
+    const response = await request(app).get("/");
+    expect(response.body).toBeDefined();
+    done();
+})
+```
+### Тест №3
+
+Тестування конкретного SQL запиту. Очікується, що відповідь буде містити потрібні поля.
+```javascript
+test("show tables response body should have properties", async done => {
+    headers = ['access', 'action', 'artifact', 'metadata', 'project', 'task', 'user']
+
+    const response = await request(app).get("/?sql=show%20tables");
+    expect(response.text).toContain('Tables_in_b2v6pffi6qrk4ubk');
+    headers.forEach(header => {
+        expect(response.text).toContain(header);
+    })
+    done();
+})
+```
+
+### Тест №4
+
+Тестування відповіді на синтаксично правильний SQL запит. Очікується, що не буде повідомлення про помилку.
+```javascript
+test("if there is no sql syntax error message should not appear", async done => {
+    const response = await request(app).get("/?sql=show%20tables");
+    expect(response.text).not.toContain("You have an error in your SQL syntax");
+    done();
+})
+```
+
+### Тест №5
+
+Тестування відповіді на синтаксично неправильний SQL запит. Очікується, що буде повідомлення про помилку.
+```javascript
+test("if there is an sql syntax error message should appear", async done => {
+    const response = await request(app).get("/?sql=sql%20syntax%20error");
+    expect(response.text).toContain("You have an error in your SQL syntax");
+    done();
+})
+```
+
+### Тест №6
+
+Тестування відповіді на SQL запит у якому вказане неправильне або неіснуюче поле. Очікується, що буде повідомлення про помилку.
+```javascript
+test("if there is unknown column in table message should appear", async done => {
+    const response = await request(app).get("/?sql=select%20abcd%from%20user");
+    expect(response.text).toContain("Unknown column");
+    done();
+})
+```
+
+### Тест №7
+
+Тестування відповіді на порожній SQL запит. Очікується, що буде повідомлення про помилку.
+```javascript
+test("if query is empty message should appear", async done => {
+    const response = await request(app).get("/?sql=");
+    expect(response.text).toContain("Query was empty");
+    done();
+})
+```
+
+**Результати тестування**
+
+![testsResults](./../src/png/testsResult.png)
 
 ## Висновки
 Провівши аналіз предметної області, порівнявши переваги та недоліки вже існуючих систем керування базами даних і, враховуючи навчальну направленість проекту, було прийнято рішення створити власний аналог системи управління базами даних.
