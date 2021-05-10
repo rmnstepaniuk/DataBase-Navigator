@@ -8,7 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
+    "devrun": "nodemon server.js",
     "doc": "jsdoc -c jsdoc.json & cd ./doc/api & global.html & cd ./../..",
     "test": "jest"
   },
@@ -17,7 +18,7 @@
     "url": "git+https://github.com/rmnstepaniuk/Database-Navigator.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Roman Stepaniuk <rmnstepaniuk@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/rmnstepaniuk/Database-Navigator/issues"
